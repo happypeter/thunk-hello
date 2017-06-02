@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import store from './redux/store'
 import { connect } from 'react-redux'
+import { fetchComments } from './redux/actions/commentActions'
 
 
 class App extends Component {
+  componentWillMount() {
+    this.props.fetchComments();
+  }
   render() {
     return (
       <div>
@@ -18,4 +21,4 @@ const mapStateToProps = (state) => ({
   comments: state
 })
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { fetchComments })(App);
